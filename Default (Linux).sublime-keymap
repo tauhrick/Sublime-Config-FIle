@@ -1,0 +1,7 @@
+[
+	{
+		"keys": ["ctrl+shift+alt+t"],
+		"command": "terminal_view_open",
+    	"args"   : {"title": "Terminal (zsh)", "cmd": "/bin/zsh -l"},
+	},
+]
