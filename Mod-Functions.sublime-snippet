@@ -1,6 +1,10 @@
 <snippet>
 	<content><![CDATA[
 namespace ModFunctions {
+	const int F = 2e5 + 10;
+
+	int fact[F], inv_fact[F];
+
 	inline void add(int &a, int b) {
 		a += b;
 		if (a >= MOD) {
@@ -49,6 +53,24 @@ namespace ModFunctions {
 			u += MOD;	
 		}
 		return u;
+	}
+
+	void pre_build() {
+		fact[0] = 1;
+		for (int i = 1; i < F; ++i) {
+			fact[i] = mul(fact[i - 1], i);
+		}
+		inv_fact[F - 1] = inv(fact[F - 1]);
+		for (int i = F - 2; i >= 0; --i) {
+			inv_fact[i] = mul(inv_fact[i + 1], i + 1);
+		}
+	}
+
+	int choose(int x, int y) {
+		if (x < y) {
+			return 0;
+		}
+		return mul(fact[x], mul(inv_fact[y], inv_fact[x - y]));
 	}
 }
 
